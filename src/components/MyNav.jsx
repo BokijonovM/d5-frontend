@@ -10,9 +10,11 @@ function MyNav() {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
-          <Button className="ml-auto" variant="primary">
-            Add Item
-          </Button>
+          <a className="ml-auto" href="/new">
+            <Button className="ml-auto" variant="primary">
+              Add Item
+            </Button>
+          </a>
         </Navbar.Collapse>
       </Navbar>
     </div>

@@ -5,7 +5,12 @@ import { Col, Row } from "react-bootstrap";
 
 function MyItems() {
   return (
-    <div className="my-5 d-flex justify-content-center">
+    <div
+      className="mt-5 d-flex justify-content-center"
+      style={{
+        marginBottom: "100px",
+      }}
+    >
       <Row>
         {product.map(post => (
           <Col md={4}>
