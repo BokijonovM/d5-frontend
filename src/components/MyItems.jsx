@@ -1,9 +1,10 @@
 import React from "react";
 import SingleItem from "./SingleItem";
+import product from "../Data/product.json";
 
 function MyItems() {
   return (
-    <div className="my-5 d-flex justify-content-center">
+    <div className="d-flex justify-content-center">
       <SingleItem />
     </div>
   );
