@@ -1,20 +1,68 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Card, Button, Row, Col } from "react-bootstrap";
+import { useParams } from "react-router-dom";
+import SingleReview from "./SingleReview";
 
 function ItemDetails() {
+  const [itemData, setItemData] = useState([]);
+  const [reviews, setReviews] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const params = useParams();
+  useEffect(() => {
+    const fetchSingleData = async () => {
+      try {
+        let res = await fetch(
+          "http://localhost:3001/products/" + params.productId
+        );
+        if (res.ok) {
+          let data = await res.json();
+          console.log("hi");
+          setItemData(data);
+          console.log(data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    const fetchReview = async () => {
+      try {
+        let response = await fetch(
+          `http://localhost:3001/products/${params.productId}/review`
+        );
+        if (response.ok) {
+          let data = await response.json();
+          console.log(data);
+          setReviews(data);
+          setIsLoading(false);
+        } else {
+          console.log("Fetch failed!");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchReview();
+    fetchSingleData();
+  }, []);
   return (
-    <div className="my-5 ml-5">
-      <Card style={{ width: "18rem" }}>
-        <Card.Img variant="top" src="holder.js/100px180" />
+    <div className="my-5 ml-5 d-flex">
+      <Card className="mr-5" style={{ width: "18rem" }}>
+        <Card.Img variant="top" src={itemData.cover} />
         <Card.Body>
-          <Card.Title>Card Title</Card.Title>
-          <Card.Text>
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
-          </Card.Text>
-          <Button variant="primary">Go somewhere</Button>
+          <Card.Title>{itemData.name}</Card.Title>
+          <Card.Text>{itemData.description}</Card.Text>
+          <Card.Text>{itemData.price}</Card.Text>
         </Card.Body>
       </Card>
+      <div style={{ marginLeft: "100px" }}>
+        {isLoading ? (
+          <h6>No comment</h6>
+        ) : (
+          reviews.map(review => {
+            return <SingleReview key={review.id} reviews={review} />;
+          })
+        )}
+      </div>
     </div>
   );
 }

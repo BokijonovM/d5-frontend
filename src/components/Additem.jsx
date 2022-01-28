@@ -89,11 +89,11 @@ function Additem() {
               size="lg"
               as="select"
             >
-              <option>Category1</option>
-              <option>Category2</option>
-              <option>Category3</option>
-              <option>Category4</option>
-              <option>Category5</option>
+              <option>Best Seller</option>
+              <option>Comfortable</option>
+              <option>Great Condition</option>
+              <option>Used like new</option>
+              <option>New</option>
             </Form.Control>
           </Form.Group>
           <Form.Group
