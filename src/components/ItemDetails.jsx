@@ -12,7 +12,7 @@ function ItemDetails() {
     const fetchSingleData = async () => {
       try {
         let res = await fetch(
-          "http://localhost:3001/product/" + params.productId
+          "https://m6-benchmark.herokuapp.com/product/" + params.productId
         );
         if (res.ok) {
           let data = await res.json();
@@ -27,7 +27,7 @@ function ItemDetails() {
     const fetchReview = async () => {
       try {
         let response = await fetch(
-          `http://localhost:3001/product/${params.productId}/review`
+          `https://m6-benchmark.herokuapp.com/product/${params.productId}/review`
         );
         if (response.ok) {
           let data = await response.json();
