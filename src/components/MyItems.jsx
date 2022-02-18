@@ -8,7 +8,7 @@ function MyItems() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        let res = await fetch("http://localhost:3001/products");
+        let res = await fetch("https://m6-benchmark.herokuapp.com/product");
         if (res.ok) {
           let data = await res.json();
           setProducts(data);
@@ -17,7 +17,7 @@ function MyItems() {
           console.log("Fetching filed!");
         }
       } catch (error) {
-        console.log(error);
+        // console.log(error);
       }
     };
     fetchData();
